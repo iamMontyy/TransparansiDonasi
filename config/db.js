@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-
-// Kita pisahkan ke file sendiri agar server.js tetap ringkas dan
-// logic koneksi bisa dipakai ulang / dites secara terpisah.
 const connectDB = async () => {
   try {
     // mongoose.connect() mengembalikan sebuah Promise,
