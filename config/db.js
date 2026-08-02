@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Fungsi ini bertugas menghubungkan aplikasi ke database MongoDB.
+
 // Kita pisahkan ke file sendiri agar server.js tetap ringkas dan
 // logic koneksi bisa dipakai ulang / dites secara terpisah.
 const connectDB = async () => {
