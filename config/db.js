@@ -2,13 +2,9 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-   
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-
-    console.log(`✅ MongoDB terhubung: ${conn.connection.host}`);
+   const conn = await mongoose.connect(process.env.MONGO_URI);
+console.log(`✅ MongoDB terhubung: ${conn.connection.host}`);
   } catch (error) {
-    // Jika gagal konek (misal MongoDB belum nyala), tampilkan error
-    // lalu hentikan aplikasi (process.exit(1)) karena API tidak berguna tanpa DB.
     console.error(`❌ Gagal konek ke MongoDB: ${error.message}`);
     process.exit(1);
   }
