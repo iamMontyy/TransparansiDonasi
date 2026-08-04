@@ -25,9 +25,6 @@ const donasiSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
-    // "ref" menghubungkan field ini ke collection 'User'.
-    // Yang tersimpan sebenarnya hanya _id User, tapi nanti bisa
-    // di-"populate" agar otomatis menampilkan detail donaturnya.
     donatur: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
