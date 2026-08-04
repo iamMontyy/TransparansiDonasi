@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-
-// Schema untuk mencatat kapan & ke mana suatu Donasi disalurkan.
-// Ini adalah inti dari fitur "transparansi": setiap penyaluran tercatat
-// dan bisa dilihat publik, sehingga jelas barang donasi sampai ke mana.
 const penyaluranSchema = new mongoose.Schema(
   {
     donasi: {
