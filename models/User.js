@@ -22,17 +22,15 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['admin', 'donatur'], // hanya boleh salah satu dari dua nilai ini
+      enum: ['admin', 'donatur'], 
       default: 'donatur',
     },
   },
   {
-    timestamps: true, // otomatis menambahkan field createdAt & updatedAt
+    timestamps: true, 
   }
 );
 
-// "Middleware" Mongoose: kode ini otomatis berjalan SEBELUM dokumen disimpan (save).
-// Fungsinya untuk meng-hash password mentah menjadi bentuk terenkripsi.
 userSchema.pre('save', async function (next) {
   // Jika password tidak diubah (misal user update nama saja), skip hashing.
   if (!this.isModified('password')) return next();
