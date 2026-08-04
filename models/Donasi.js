@@ -34,8 +34,6 @@ const donasiSchema = new mongoose.Schema(
       type: String,
       enum: ['tersedia', 'disalurkan'],
       default: 'tersedia',
-      // 'tersedia' = belum disalurkan ke penerima
-      // 'disalurkan' = sudah ada catatan Penyaluran untuk barang ini
     },
   },
   {
