@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
-// Schema = "cetakan" bentuk data yang boleh disimpan di collection 'users'.
-// Mongoose akan memvalidasi setiap dokumen baru sesuai aturan di bawah ini.
 const userSchema = new mongoose.Schema(
   {
     nama: {
