@@ -5,12 +5,12 @@ const userSchema = new mongoose.Schema(
     nama: {
       type: String,
       required: [true, 'Nama wajib diisi'],
-      trim: true, // otomatis membuang spasi berlebih di awal/akhir
+      trim: true, 
     },
     email: {
       type: String,
       required: [true, 'Email wajib diisi'],
-      unique: true, // tidak boleh ada 2 user dengan email sama
+      unique: true, 
       lowercase: true,
       trim: true,
     },
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Password wajib diisi'],
       minlength: 6,
-      select: false, // secara default password TIDAK ikut ter-query, demi keamanan
+      select: false, 
     },
     role: {
       type: String,
