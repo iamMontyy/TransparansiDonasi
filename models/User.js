@@ -32,19 +32,12 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('save', async function (next) {
-  // Jika password tidak diubah (misal user update nama saja), skip hashing.
   if (!this.isModified('password')) return next();
-
-  // genSalt menghasilkan "garam" acak, lalu hash menggabungkan
-  // password + salt agar hasil akhirnya sulit ditebak/dibalikkan.
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-// Method kustom yang bisa dipanggil pada setiap instance User,
-// contoh: user.cocokkanPassword('123456')
-// Berguna saat proses login untuk membandingkan password input vs hash di DB.
 userSchema.methods.cocokkanPassword = async function (passwordInput) {
   return bcrypt.compare(passwordInput, this.password);
 };
