@@ -23,7 +23,6 @@ const penyaluranSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
-    // Admin yang bertanggung jawab mencatat penyaluran ini
     dicatatOleh: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
