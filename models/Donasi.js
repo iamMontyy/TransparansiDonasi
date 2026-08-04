@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-
-// Schema untuk data barang yang didonasikan
 const donasiSchema = new mongoose.Schema(
   {
     namaBarang: {
