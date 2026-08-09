@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema(
   {
     nama: {
-      type: String
+      type: String,
       required: [true, 'Nama wajib diisi'],
       trim: true, 
     },
