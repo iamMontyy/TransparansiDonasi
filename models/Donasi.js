@@ -3,7 +3,7 @@ const donasiSchema = new mongoose.Schema(
   {
     namaBarang: {
       type: String,
-      required: [true, 'Nama barang wajib diisi'],
+      required: [true, 'Nama barang wajib diisi yaa'],
       trim: true,
     },
     kategori: {
