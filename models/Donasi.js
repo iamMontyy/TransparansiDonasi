@@ -8,7 +8,7 @@ const donasiSchema = new mongoose.Schema(
     },
     kategori: {
       type: String,
-      enum: ['pakaian', 'makanan', 'buku', 'perabotan', 'elektronik', 'lainnya'],
+      enum: ['pakaian', 'makanan', 'buku', 'perabotan', 'elektronik', 'uang', 'lainnya'],
       default: 'lainnya',
     },
     jumlah: {
