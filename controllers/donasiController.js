@@ -26,9 +26,6 @@ const getDonasiById = async (req, res) => {
     res.status(500).json({ pesan: error.message });
   }
 };
-
-// POST /api/donasi
-// PRIVAT — hanya user yang login (role: donatur/admin) yang boleh menambah donasi
 const buatDonasi = async (req, res) => {
   try {
     const { namaBarang, kategori, jumlah, kondisi, deskripsi } = req.body;
@@ -39,7 +36,7 @@ const buatDonasi = async (req, res) => {
       jumlah,
       kondisi,
       deskripsi,
-      donatur: req.user._id, // req.user didapat dari middleware "protect"
+      donatur: req.user._id,
     });
 
     res.status(201).json({ pesan: 'Donasi berhasil dicatat', data: donasiBaru });
@@ -47,9 +44,6 @@ const buatDonasi = async (req, res) => {
     res.status(400).json({ pesan: error.message });
   }
 };
-
-// PUT /api/donasi/:id
-// PRIVAT — hanya pemilik donasi (donatur yang sama) atau admin yang boleh mengubah
 const updateDonasi = async (req, res) => {
   try {
     const donasi = await Donasi.findById(req.params.id);
@@ -57,18 +51,10 @@ const updateDonasi = async (req, res) => {
     if (!donasi) {
       return res.status(404).json({ pesan: 'Donasi tidak ditemukan' });
     }
-
-    // Otorisasi manual: cek apakah user ini pemilik data ATAU admin.
-    // .toString() dipakai karena donasi.donatur berupa ObjectId,
-    // sedangkan req.user._id juga ObjectId — keduanya perlu disamakan formatnya
-    // sebelum dibandingkan dengan '==='.
     const pemilik = donasi.donatur.toString() === req.user._id.toString();
     if (!pemilik && req.user.role !== 'admin') {
       return res.status(403).json({ pesan: 'Anda tidak berhak mengubah donasi ini' });
     }
-
-    // Object.assign menyalin field baru dari req.body ke object donasi,
-    // hanya field yang dikirim yang akan berubah, sisanya tetap sama.
     Object.assign(donasi, req.body);
     await donasi.save();
 
