@@ -37,14 +37,7 @@ const login = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ pesan: 'Email dan password wajib diisi' });
     }
-
-    // Ingat: field password punya "select: false" di schema,
-    // jadi kita harus eksplisit minta field-nya dengan .select('+password')
     const user = await User.findOne({ email }).select('+password');
-
-    // Kita sengaja pakai pesan error yang SAMA baik email salah
-    // maupun password salah, agar orang jahat tidak bisa menebak
-    // email mana saja yang terdaftar di sistem kita.
     if (!user || !(await user.cocokkanPassword(password))) {
       return res.status(401).json({ pesan: 'Email atau password salah' });
     }
