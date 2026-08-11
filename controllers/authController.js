@@ -1,30 +1,18 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-
-// Fungsi kecil untuk membuat token JWT berisi id user.
-// Token inilah yang nanti dikirim balik ke client dan dipakai
-// di header Authorization pada request-request berikutnya.
 const buatToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
-
-// POST /api/auth/register
-// Mendaftarkan user baru (donatur atau admin)
 const register = async (req, res) => {
   try {
     const { nama, email, password, role } = req.body;
-
-    // Cek apakah email sudah dipakai
     const sudahAda = await User.findOne({ email });
     if (sudahAda) {
       return res.status(400).json({ pesan: 'Email sudah terdaftar' });
     }
-
-    // Membuat dokumen User baru.
-    // Ingat: proses hashing password terjadi otomatis lewat
-    // userSchema.pre('save') yang sudah kita definisikan di model.
+    
     const user = await User.create({ nama, email, password, role });
 
     res.status(201).json({
@@ -42,7 +30,6 @@ const register = async (req, res) => {
   }
 };
 
-// POST /api/auth/login
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
