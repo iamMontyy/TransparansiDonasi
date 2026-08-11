@@ -1,18 +1,9 @@
 const Donasi = require('../models/Donasi');
-
-// GET /api/donasi
-// PUBLIK — siapa saja (tanpa login) bisa melihat daftar donasi.
-// Inilah inti "transparansi": semua orang bisa memantau data donasi.
 const getSemuaDonasi = async (req, res) => {
   try {
-    // Query parameter opsional untuk filter, contoh: /api/donasi?status=tersedia
     const filter = {};
     if (req.query.status) filter.status = req.query.status;
     if (req.query.kategori) filter.kategori = req.query.kategori;
-
-    // .populate('donatur', 'nama') artinya: field 'donatur' yang tadinya
-    // hanya berisi ObjectId, sekarang otomatis diganti dengan objek User
-    // tapi HANYA field 'nama' saja yang diambil (demi privasi email).
     const daftarDonasi = await Donasi.find(filter)
       .populate('donatur', 'nama')
       .sort({ createdAt: -1 }); // -1 = urutkan dari yang terbaru
