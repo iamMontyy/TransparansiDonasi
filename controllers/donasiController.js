@@ -6,16 +6,13 @@ const getSemuaDonasi = async (req, res) => {
     if (req.query.kategori) filter.kategori = req.query.kategori;
     const daftarDonasi = await Donasi.find(filter)
       .populate('donatur', 'nama')
-      .sort({ createdAt: -1 }); // -1 = urutkan dari yang terbaru
+      .sort({ createdAt: -1 });
 
     res.json({ total: daftarDonasi.length, data: daftarDonasi });
   } catch (error) {
     res.status(500).json({ pesan: error.message });
   }
 };
-
-// GET /api/donasi/:id
-// PUBLIK — detail satu donasi
 const getDonasiById = async (req, res) => {
   try {
     const donasi = await Donasi.findById(req.params.id).populate('donatur', 'nama');
