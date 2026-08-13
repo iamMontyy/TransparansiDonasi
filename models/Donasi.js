@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const donasiSchema = new mongoose.Schema(
-  {
+  
     namaBarang: {
       type: String,
       required: [true, 'Nama barang wajib diisi yaa'],
