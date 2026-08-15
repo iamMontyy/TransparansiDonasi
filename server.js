@@ -5,7 +5,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const donasiRoutes = require('./routes/donasiRoutes');
 const penyaluranRoutes = require('./routes/penyaluranRoutes');
-connectDB()
+connectDB();
 const app = express();
 app.use(cors()); 
 app.use(express.json()); 
