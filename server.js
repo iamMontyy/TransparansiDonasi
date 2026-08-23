@@ -6,7 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const donasiRoutes = require('./routes/donasiRoutes');
 const penyaluranRoutes = require('./routes/penyaluranRoutes');
 connectDB();
-const app = express();
+const app = express()
 app.use(cors()); 
 app.use(express.json());
 
