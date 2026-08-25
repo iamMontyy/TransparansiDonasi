@@ -14,7 +14,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/donasi', donasiRoutes);
 app.use('/api/penyaluran', penyaluranRoutes);
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => 
   res.json({ pesan: 'API Platform Transparansi Donasi Barang aktif ' });
 });
 
