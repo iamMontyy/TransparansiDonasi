@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const donasiRoutes = require('./routes/donasiRoutes');
+const donasiRoutes = require('./routes/donasiRoutes')
 const penyaluranRoutes = require('./routes/penyaluranRoutes');
 connectDB();
 const app = express();
